@@ -1,0 +1,42 @@
+{
+  "name": "geo-tools",
+  "homepage": "http://github.com/loganbestwick/geo-tools",
+  "author": {
+    "name": "Logan Bestwick",
+    "url": "http://github.com/loganbestwick"
+  },
+  "main": "./src/geo-tools",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/loganbestwick/geo-tools"
+  },
+  "description": "Tools to help geocode, reverse geocode, and calculate location distances",
+  "devDependencies": {
+    "should": "3.1.2",
+    "mocha": "1.17.1"
+  },
+  "keywords": [
+    "geocode",
+    "geodistance",
+    "geo",
+    "geo-tools",
+    "distance",
+    "coordinates"
+  ],
+  "version": "0.1.2",
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {
+    "test": "mocha ./test/geotests.js"
+  },
+  "readme": "#geo-tools\n\nA simple library used to geocode an address, reverse geocode coordinates, and calculate the distance between two locations. The default distance used is KM. Unit conversion methods are provided and can be seen below. The Google Maps API service is used for geocoding and reverse geocoding. \n\n<h2>Installation</h2>\n\n<pre>\nnpm install geo-tools\n</pre>\n\n<h2>Require</h2>\n\nAt the top of your app:\n\n<pre>\nvar geoTools = require('geo-tools');\n</pre>\n\n<h2>Methods</h2>\n\nLatitude and longitude shoud be inputted as lat/lng and will be returned as lat/lng.\n\n<h3>geocode(address, callback, options)</h3>\n\nReturns the latitude and longitude of a given address. \n\n<pre>\ngeocode('717 California Street, San Francisco, CA', function(coordinates){\n  console.log(coordinates)\n})\n\n//Displays to the console:\n\n{ lat: 37.79221, lng: -122.406141 }\n</pre>\n\nOptions(not required):\n\n<pre>\n{key: 'YOUR_GOOGLE_API_KEY'}\n</pre>\n\n<h3>reverseGeocode(object[lat], [lng], callback)</h3>\n\nTakes 2 or 3 arguments. It can accept either an object with the lat/lng (ex. reverseGeocode({lat: 51.515400, lng: 7.455185}, callback)) or two numbers and the callback (ex. reverseGeocode(51.515400, 7.455185, callback)). If you use the latter format, order matters. Latitude must go first and longitude second.\n\n<pre>\nreverseGeocode({lat: 37.79221, lng: -122.406141}, function(address){\n\tconsole.log(address)\n})\n\n//Displays to the console:\n\n{ full_address: '717 California Street, San Francisco, CA 94108, USA',\n  street_number: '717',\n  street: 'California Street',\n  neighborhood: 'Chinatown',\n  city: 'San Francisco',\n  county: 'San Francisco County',\n  state: 'California',\n  country: 'United States',\n  postal_code: '94108' }\n</pre>\n\n<h3>distance(object1, object2[lat1], [lng1], [lat2], [lng2])</h3>\n\nCalculates the distance between two sets of coordinates. Returns the distance in Km. Accepts either 2 object arguments (ex. distance({lat: 37.79221, lng: -122.406141}, {lat: 37.774514, lng: -122.418079})), or 4 number arguments (ex. distance(37.79221, -122.406141, 37.774514, -122.418079)). If you choose the latter method, order matters and should be as follows: distance(lat1, lng1, lat2, lng2). Passing in objects is reccomended. \n\n<pre>\ndistance({lat: 37.79221, lng: -122.406141}, {lat: 37.774514, lng: -122.418079})\n\n//Returns:\n\n2.2299158844532245\n</pre>\n\n<h3>toMiles(distance)</h3>\n\nConverts Km into miles. The argument passed must be in Km which is the default unit used in geo-tools.\n\n<pre>\nvar length = distance({lat: 37.79221, lng: -122.406141}, {lat: 37.774514, lng: -122.418079});\n\ntoMiles(length) //Returns\n\n1.3856050630385846\n</pre>\n\n<h3>toMeters(distance)</h3>\n\nConverts Km into meters. The argument passed must be in Km which is the default unit used in geo-tools.\n\n<h3>toYards(distance)</h3>\n\nConverts Km into yards. The argument passed must be in Km which is the default unit used in geo-tools.\n\n<h3>toFeet(distance)</h3>\n\nConverts Km into feet. The argument passed must be in Km which is the default unit used in geo-tools.\n\n<h2>Tests</h2>\n\nTo run tests, type mocha into your terminal\n\n<pre>\nmocha\n</pre>\n\n<h2>Notes</h2>\n<ul>\n\t<li>Sexagesimal format is not supported</li>\n\t<li>Google Maps API will allow for up to 2500 API calls in 24 hours. For additional calls, a business API key is required.</li>\n</ul>\n\n<h2>Sources</h2>\n<ul>\n\t<li>To calculate distance, the Haversine formula is used. The formula comes from the following source:</li>\n\t<li><a href=\"http://www.movable-type.co.uk/scripts/latlong.html\">http://www.movable-type.co.uk/scripts/latlong.html</a></li>\n</ul>\n\nAny and all feedback/suggestions is appreciated and should be sent to: [loganbestwick@gmail.com](mailto:loganbestwick@gmail.com)\n\nEnjoy!",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/loganbestwick/geo-tools/issues"
+  },
+  "_id": "geo-tools@0.1.2",
+  "_shasum": "fe2e8c542818b631d4aa3c597bed823ea19bc884",
+  "_resolved": "git://github.com/timothyknight/geo-tools.git#e195d9615800f70f87e64c80becbc5fd918eab21",
+  "_from": "geo-tools@git://github.com/timothyknight/geo-tools.git#e195d9615800f70f87e64c80becbc5fd918eab21"
+}
